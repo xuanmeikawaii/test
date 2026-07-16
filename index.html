@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>不动产信息</title>
+<style>
+  :root{
+    --line:#ececec;
+    --bg:#f4f4f4;
+    --label:#1a1a1a;
+    --value:#333;
+    --blue:#2f6fd8;
+    --muted:#9aa0a6;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font:16px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);
+    color:var(--value);
+  }
+
+  /* 标签栏 */
+  .tabs{
+    display:flex;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+  .tab{
+    flex:1;
+    text-align:center;
+    padding:14px 6px;
+    font-size:17px;
+    color:var(--blue);
+    cursor:pointer;
+    position:relative;
+    user-select:none;
+  }
+  .tab.active{
+    color:#1a1a1a;
+    font-weight:600;
+  }
+  .tab.active::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:0;
+    width:70%;
+    height:3px;
+    background:#1a1a1a;
+    border-radius:2px;
+  }
+
+  /* 内容面板 */
+  .panel{display:none}
+  .panel.active{display:block}
+
+  /* 列表卡片 */
+  .list{background:#fff}
+  .row{
+    padding:14px 18px;
+    border-bottom:1px solid var(--line);
+  }
+  .row:last-child{border-bottom:none}
+  .row .k{
+    font-size:17px;
+    font-weight:700;
+    color:var(--label);
+    margin-bottom:6px;
+  }
+  .row .v{
+    font-size:16px;
+    color:var(--value);
+    word-break:break-all;
+  }
+  .row .v.empty{min-height:4px}
+
+  .plan{
+    padding:60px 18px;
+    text-align:center;
+    color:var(--muted);
+    font-size:15px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="tabs">
+    <div class="tab active" data-target="p1">照面信息</div>
+    <div class="tab" data-target="p2">不动产状态</div>
+    <div class="tab" data-target="p3">平面图</div>
+  </div>
+
+  <!-- 照面信息 -->
+  <section id="p1" class="panel active">
+    <div class="list">
+      <div class="row"><div class="k">权利人</div><div class="v">王延智</div></div>
+      <div class="row"><div class="k">不动产证书证明号</div><div class="v">鲁(2017)武城县不动产权第0000443号</div></div>
+      <div class="row"><div class="k">共有情况</div><div class="v">共同共有</div></div>
+      <div class="row"><div class="k">坐落</div><div class="v">顺河街南兴武路西领秀公寓K7号楼2单元102室</div></div>
+      <div class="row"><div class="k">不动产单元号</div><div class="v">371428008811GB00002F00122012</div></div>
+      <div class="row"><div class="k">权利类型</div><div class="v">国有建设用地使用权/房屋(构筑物)所有权</div></div>
+      <div class="row"><div class="k">权利性质</div><div class="v">出让/商品房</div></div>
+      <div class="row"><div class="k">用途</div><div class="v">城镇住宅用地/住宅</div></div>
+      <div class="row"><div class="k">面积</div><div class="v">15.36平方米/85.17平方米</div></div>
+      <div class="row"><div class="k">使用期限</div><div class="v">2083年09月29日止</div></div>
+      <div class="row"><div class="k">房屋结构</div><div class="v">混合结构</div></div>
+      <div class="row"><div class="k">房屋总层数/所在层</div><div class="v">6 / 1</div></div>
+      <div class="row"><div class="k">分摊土地使用权面积</div><div class="v">15.36平方米</div></div>
+      <div class="row"><div class="k">持证人</div><div class="v">王延智</div></div>
+    </div>
+  </section>
+
+  <!-- 不动产状态 -->
+  <section id="p2" class="panel">
+    <div class="list">
+      <div class="row"><div class="k">证书状态</div><div class="v">有效</div></div>
+      <div class="row"><div class="k">抵押状态</div><div class="v">无抵押</div></div>
+      <div class="row"><div class="k">查封状态</div><div class="v">无查封</div></div>
+      <div class="row"><div class="k">异议状态</div><div class="v">无异议</div></div>
+    </div>
+  </section>
+
+  <!-- 平面图 -->
+  <section id="p3" class="panel">
+    <div class="plan">暂无平面图</div>
+  </section>
+
+  <script>
+    var tabs = document.querySelectorAll('.tab');
+    for (var i = 0; i < tabs.length; i++) {
+      tabs[i].addEventListener('click', function () {
+        var target = this.getAttribute('data-target');
+        var t = document.querySelectorAll('.tab');
+        for (var j = 0; j < t.length; j++) t[j].classList.remove('active');
+        this.classList.add('active');
+        var p = document.querySelectorAll('.panel');
+        for (var k = 0; k < p.length; k++) p[k].classList.remove('active');
+        document.getElementById(target).classList.add('active');
+      });
+    }
+  </script>
+
+</body>
+</html>
