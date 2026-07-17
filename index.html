@@ -81,11 +81,61 @@
   }
   .row .v.empty{min-height:4px}
 
-  .plan{
-    padding:60px 18px;
+  /* 宗地图 */
+  .zong-wrap{background:#fff;padding:10px 10px 18px}
+  .zong{
+    display:block;
+    width:100%;
+    height:auto;
+    border:1px solid var(--line);
+    border-radius:4px;
+    cursor:zoom-in;
+  }
+  .zong-tip{
     text-align:center;
     color:var(--muted);
-    font-size:15px;
+    font-size:13px;
+    padding-top:10px;
+  }
+
+  /* 放大浮层 */
+  .lb{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    z-index:100;
+  }
+  .lb.show{display:block}
+  .lb-scroll{
+    position:absolute;
+    inset:0;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+    text-align:center;
+  }
+  .lb-img{
+    width:100%;
+    height:auto;
+    cursor:zoom-in;
+    transition:width .2s;
+  }
+  .lb-img.big{
+    width:230%;
+    cursor:zoom-out;
+  }
+  .lb-close{
+    position:absolute;
+    top:10px;
+    right:14px;
+    z-index:101;
+    color:#fff;
+    font-size:34px;
+    line-height:40px;
+    width:40px;
+    height:40px;
+    text-align:center;
+    cursor:pointer;
   }
 
   /* 身份核验页 */
@@ -150,7 +200,7 @@
   <div class="tabs">
     <div class="tab active" data-target="p1">照面信息</div>
     <div class="tab" data-target="p2">不动产状态</div>
-    <div class="tab" data-target="p3">平面图</div>
+    <div class="tab" data-target="p3">宗地图</div>
   </div>
 
   <!-- 照面信息 -->
@@ -183,10 +233,21 @@
     </div>
   </section>
 
-  <!-- 平面图 -->
+  <!-- 宗地图 -->
   <section id="p3" class="panel">
-    <div class="plan">暂无平面图</div>
+    <div class="zong-wrap">
+      <img id="zongImg" class="zong" src="宗地图.jpg" alt="宗地图">
+      <div class="zong-tip">点击图片可放大查看</div>
+    </div>
   </section>
+
+  <!-- 图片放大浮层 -->
+  <div id="lightbox" class="lb">
+    <div class="lb-close" id="lbClose">×</div>
+    <div class="lb-scroll" id="lbScroll">
+      <img id="lbImg" class="lb-img" src="宗地图.jpg" alt="宗地图">
+    </div>
+  </div>
 
   <script>
     // 身份核验
@@ -228,6 +289,27 @@
         document.getElementById(target).classList.add('active');
       });
     }
+
+    // 宗地图放大浮层
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lbImg');
+    var lbScroll = document.getElementById('lbScroll');
+
+    document.getElementById('zongImg').addEventListener('click', function () {
+      lb.classList.add('show');
+      lbImg.classList.remove('big');
+      lbScroll.scrollTop = 0;
+      lbScroll.scrollLeft = 0;
+    });
+    function closeLb() { lb.classList.remove('show'); }
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    lbImg.addEventListener('click', function (e) {
+      e.stopPropagation();
+      lbImg.classList.toggle('big');
+    });
+    lbScroll.addEventListener('click', function (e) {
+      if (e.target === lbScroll) closeLb();
+    });
   </script>
 
 </body>
