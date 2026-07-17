@@ -82,15 +82,59 @@
   .row .v.empty{min-height:4px}
 
   /* 宗地图 */
-  .zong-wrap{background:#fff;padding:10px 10px 18px}
+  .zong-wrap{background:#fff;padding:12px 10px 18px}
+  .zdt{border:1.5px solid #333;color:#111}
+  .zdt-title{
+    text-align:center;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:8px;
+    padding:8px 0 6px;
+    position:relative;
+  }
+  .zdt-title span{
+    position:absolute;
+    right:8px;
+    bottom:8px;
+    font-size:11px;
+    font-weight:400;
+    letter-spacing:0;
+    color:#333;
+  }
+  table.zdt-tb{width:100%;border-collapse:collapse;font-size:12.5px}
+  table.zdt-tb td{
+    border:1px solid #333;
+    padding:7px 8px;
+    vertical-align:top;
+    line-height:1.4;
+    word-break:break-all;
+  }
+  table.zdt-tb td .lb2{color:#555}
   .zong{
     display:block;
     width:100%;
     height:auto;
-    border:1px solid var(--line);
-    border-radius:4px;
+    border:none;
+    border-top:1px solid #333;
+    border-bottom:1px solid #333;
     cursor:zoom-in;
   }
+  .zdt-loc{
+    font-size:12.5px;
+    padding:7px 8px;
+    border-bottom:1px solid #333;
+    line-height:1.4;
+  }
+  table.zdt-area{width:100%;border-collapse:collapse;font-size:12.5px}
+  table.zdt-area td{border:1px solid #333;padding:6px 8px;text-align:center}
+  table.zdt-area td.k{background:#faf7f0;color:#555;width:40%;text-align:left}
+  .zdt-foot{
+    font-size:12px;
+    line-height:1.7;
+    padding:8px;
+    color:#222;
+  }
+  .zdt-foot b{font-weight:600}
   .zong-tip{
     text-align:center;
     color:var(--muted);
@@ -236,8 +280,34 @@
   <!-- 宗地图 -->
   <section id="p3" class="panel">
     <div class="zong-wrap">
-      <img id="zongImg" class="zong" src="宗地图.jpg" alt="宗地图">
-      <div class="zong-tip">点击图片可放大查看</div>
+      <div class="zdt">
+        <div class="zdt-title">宗 地 图<span>单位：㎡</span></div>
+        <table class="zdt-tb">
+          <tr>
+            <td>宗地代码：371428008811GB00002</td>
+            <td>权利人：王延智 梁盼盼等全体业主</td>
+          </tr>
+          <tr>
+            <td>所在图幅号：4119.50-497.50</td>
+            <td>宗地面积：33336.00</td>
+          </tr>
+        </table>
+        <img id="zongImg" class="zong" src="宗地图_中.jpg" alt="宗地图">
+        <div class="zdt-loc">坐落：顺河街南、兴隆街北、兴武路西领秀公寓K7号楼2单元102室</div>
+        <table class="zdt-area">
+          <tr><td colspan="2" style="text-align:center;background:#faf7f0;color:#555">面积分类表（㎡）</td></tr>
+          <tr><td class="k">使用权面积</td><td>15.36</td></tr>
+          <tr><td class="k">独用面积</td><td>0.00</td></tr>
+          <tr><td class="k">分摊面积</td><td>15.36</td></tr>
+        </table>
+        <div class="zdt-foot">
+          <div>图种：2016年解析法测绘界址图　　比例尺：1:1800</div>
+          <div>绘图单位：德州四海工程监测有限公司</div>
+          <div>绘图者：孙文翰　　审核者：庞瑞祥</div>
+          <div>绘图日期：2017年3月11日　　审核日期：2017年3月11日</div>
+        </div>
+      </div>
+      <div class="zong-tip">点击地图可放大查看</div>
     </div>
   </section>
 
@@ -245,7 +315,7 @@
   <div id="lightbox" class="lb">
     <div class="lb-close" id="lbClose">×</div>
     <div class="lb-scroll" id="lbScroll">
-      <img id="lbImg" class="lb-img" src="宗地图.jpg" alt="宗地图">
+      <img id="lbImg" class="lb-img" src="宗地图_中.jpg" alt="宗地图">
     </div>
   </div>
 
